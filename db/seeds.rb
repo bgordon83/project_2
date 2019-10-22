@@ -9,5 +9,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-example = Examples.create(text:'Name')
-example_2 = Examples.create(text:'Date')
+example = Example.create(text:'Name')
+example_2 = Example.create(text:'Date')
