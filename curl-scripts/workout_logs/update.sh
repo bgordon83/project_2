@@ -7,10 +7,10 @@ curl "http://localhost:4741/workout_logs/${ID}" \
   --header "Authorization: Token token=${TOKEN}" \
   --data '{
     "workout_log": {
-      "routine": "'"${ROTUINE}"'",
+      "routine": "'"${ROUTINE}"'",
       "sets": "'"${SETS}"'",
       "reps": "'"${REPS}"'",
-      "time": "'"${TIME}"'",
+      "time_spent": "'"${TIME}"'",
       "user_id": "'"${ID}"'"
     }
   }'

@@ -10,7 +10,7 @@ class WorkoutLogsController < ProtectedController
 
   # GET /workout_logs/1
   def show
-  #  @workout_log = current_user.workout_logs.find
+    set_workout_log
 
     render json: @workout_log
   end
@@ -28,6 +28,7 @@ class WorkoutLogsController < ProtectedController
 
   # PATCH/PUT /workout_logs/1
   def update
+    set_workout_log
     if @workout_log.update(workout_log_params)
       render json: @workout_log
     else
@@ -37,6 +38,7 @@ class WorkoutLogsController < ProtectedController
 
   # DELETE /workout_logs/1
   def destroy
+    set_workout_log
     @workout_log.destroy
 
     head :no_content
