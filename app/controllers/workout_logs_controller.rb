@@ -3,9 +3,10 @@ class WorkoutLogsController < ProtectedController
 
   # GET /workout_logs
   def index
-    @workout_log = current_user.workout_logs.all
+    @workout_logs = current_user.workout_logs
 
-    render json: @workout_Logs
+    render json: @workout_logs
+
   end
 
   # GET /workout_logs/1
@@ -17,8 +18,7 @@ class WorkoutLogsController < ProtectedController
 
   # POST /workout_logs
   def create
-    @workout_log = current_user.workout_logs.build(workout_log_params)
-
+    @workout_log = current_user.workout_logs.create(workout_log_params)
     if @workout_log.save
       render json: @workout_log, status: :created, location: @workout_log
     else
@@ -52,6 +52,6 @@ class WorkoutLogsController < ProtectedController
 
     # Only allow a trusted parameter "white list" through.
     def workout_log_params
-      params.require(:workout_log).permit(:routine, :sets, :reps, :time_spent, :user_id)
+      params.require(:workout_log).permit(:routine, :sets, :reps, :time_spent, :user_id, :id)
     end
 end
