@@ -99,7 +99,12 @@ tests in RSpec to test your API.
 | POST   | `/sign-up`             | `users#signup`    |
 | POST   | `/sign-in`             | `users#signin`    |
 | PATCH  | `/change-password`     | `users#changepw`  |
-| DELETE | `/sign-out`        | `users#signout`   |
+| DELETE | `/sign-out`            | `users#signout`   |
+| POST   | `/workout_logs`        | `workout_logs#create` |
+| GET    | `/workout_logs`        | `workout_logs#index` |
+| GET    | `/workout_logs/:id`    | `workout_logs#show` |
+| PATCH  | `/workout_logs`        | `workout_logs#update` |
+| DELETE | `/workout_logs`        | `workout_logs#destroy` |
 
 #### POST /sign-up
 
@@ -218,6 +223,162 @@ Response:
 
 ```md
 HTTP/1.1 204 No Content
+```
+#### POST /workout_logs
+
+Request:
+
+```sh
+curl http://localhost:4741/workout_logs \
+  --include \
+  --request POST \
+  --header "Content-Type: application/json" \
+  --data '{
+   
+      "routine": "ARMS",
+      "reps": "3",
+      "sets": "4",
+      "time_spent": "60"
+    
+  }'
+```
+
+```sh
+EMAIL=ava@bob.com PASSWORD=hannah curl-scripts/auth/sign-up.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{
+  "user": {
+    "id": 1,
+    "email": "ava@bob.com"
+  }
+}
+```
+#### GET /workout_logs
+
+Request:
+
+```sh
+curl http://localhost:4741/workout_logs \
+  --include \
+  --request GET \
+  --header "Content-Type: application/json" \
+ 
+  }'
+```
+
+```sh
+EMAIL=ava@bob.com PASSWORD=hannah curl-scripts/auth/sign-up.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{
+  "workout_logs": { [
+    "id": 1,
+    "reps": "4",
+    "routine": "arms",
+    "sets": "3",
+    "time_spent": "40",
+    ["id": 2,
+    "reps": "4",
+    "routine": "arms",
+    "sets": "3",
+    "time_spent": "40"    ]
+    }
+```
+
+
+#### GET /workout_logs
+
+Request:
+
+```sh
+curl http://localhost:4741/workout_logs/1 \
+  --include \
+  --request GET \
+  --header "Content-Type: application/json" \
+ 
+  }'
+```
+
+```sh
+EMAIL=ava@bob.com PASSWORD=hannah curl-scripts/auth/sign-up.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{
+  "workout_logs": { [
+    "id": 1,
+    "reps": "4",
+    "routine": "arms",
+    "sets": "3",
+    "time_spent": "40"
+    }
+```
+
+#### PATCH /workout_logs/:id
+
+Request:
+
+```sh
+curl http://localhost:4741/workout_logs/1\
+  --include \
+  --request Patch \
+  --header "Content-Type: application/json" \
+  --data:  params{routine: arms sets: 20 reps: 20 time_spent: 20, id: 1}
+  }'
+```
+
+```sh
+EMAIL=ava@bob.com PASSWORD=hannah curl-scripts/auth/sign-up.sh
+```
+
+Response:
+
+```md
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+
+{
+  "workout_logs": { [
+    "id": 1,
+    "reps": "20",
+    "routine": "arms",
+    "sets": "20",
+    "time_spent": "20"
+    }
+```
+#### DELETE /workout_logs/:id
+
+Request:
+
+```sh
+curl http://localhost:4741/workout_logs/1\
+  --include \
+  --request DELETE \
+  --header "Content-Type: application/json" \
+ 
+  }'
+```
+
+```sh
+EMAIL=ava@bob.com PASSWORD=hannah curl-scripts/auth/sign-up.sh
 ```
 
 ### Keeping your database up to date 
