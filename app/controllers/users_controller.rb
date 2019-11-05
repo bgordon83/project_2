@@ -37,8 +37,8 @@ class UsersController < ProtectedController
     # and the model saves
     # then 204
     # else 400
-    if current_user.authenticate(pw_creds[:old]) &&
-       !(current_user.password = pw_creds[:new]).blank? &&
+    if current_user.authenticate(pw_creds["old"]) &&
+       !(current_user.password = pw_creds["new"]).blank? &&
        current_user.save
       head :no_content
     else
@@ -53,6 +53,6 @@ class UsersController < ProtectedController
   end
 
   def pw_creds
-    params.permit(:old, :new)
+    params.require(:passwords).permit(:old, :new)
   end
 end
